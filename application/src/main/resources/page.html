@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOCHCHAIN</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript">
+    function search() {
+        let s = ["CONFIRMING", "TRANSFERRING", "APPROVED", "DISCARDING", "INVALID"]
+
+        var uid=document.getElementById("uid").value;
+        $.ajax({
+            url: 'http://127.0.0.1:8080/query',
+            type: 'POST',
+            data: 'uid='+uid,
+            success: function (response) {
+
+                let r = response;
+                console.log(r);
+                let owners = "";
+                for (let o of r.owners) {
+                    owners += o;
+                    owners += ";";
+                }
+
+                $('#content').remove();
+                $(searchinput).append('<section style="align-items:initial" id="content">'+
+                '<table>'+
+                    '<tr><td style="font-weight: bold; width: 30%;">UID</td><td >'+r.uid+'</td></tr>'+
+                    '<tr><td style="font-weight: bold; width: 30%;">Owners</td><td>'+owners+'</td></tr>'+
+                    '<tr><td style="font-weight: bold; width: 30%;">Pending Buyer</td><td>'+r.pending+'</td></tr>'+
+                    '<tr><td style="font-weight: bold; width: 30%;">Status</td><td>'+s[r.status]+'</td></tr>'+
+                '</table>'+
+            '</section>')
+            },
+            error: function(jqXHR, textStatus, thr) {
+                console.log(textStatus, thr);
+            }
+        })
+    }
+    </script>
+</head>
+
+<body>
+    <!--navigation-->
+    <nav>
+        <div class="nav_container">
+            <ul>
+                <!-- <li><a href="#">search</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+
+    <!---Middle search-->
+    <section id="searchinput">
+        <img src="logo.png" alt="">
+
+        <div class="search_box">
+            <input type="text" name="uid" id="uid">
+            <!-- <a href="">SEARCH</a> -->
+            <button type="submit" onclick=search()>SEARCH</button>
+        </div>
+    </section>
+
+    
+    <!-- <section style="align-items:initial" id="content">
+        <table>
+            <tr>
+                <td style="font-weight: bold; width: 30%;">UID</td>
+                <td >1</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; width: 30%;">Owner</td>
+                <td>ZHOU ZHOU</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="font-weight: bold; width: 30%;">PlatformMSP</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; width: 30%;">SellerMSP</td>
+                <td>ZHOU ZHOU</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; width: 30%;">SupplierMSP</td>
+                <td>ZHOU ZHOU</td>
+            </tr>
+        </table>
+    </section> -->
+
+
+
+    <!---footer-->
+    <footer style="bottom: 0;  background: #fbfbfb;  padding: 20px 15px 22px 15px;">
+        <div class="nav_container">
+            <ul>
+                <li>About us</li>
+                <li>ZHOU ZHOU</li>
+                <li>MINGCHENG DUAN</li>
+            </ul>
+        </div>
+
+        <div class="nav_container">
+            <ul>
+                <li><a href="#">&copy;2021 Distributed Ledgers & Cryptocurrencies Coursework </a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
