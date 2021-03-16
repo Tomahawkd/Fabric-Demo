@@ -3,6 +3,7 @@ package io.tomahawkd.blockchain.application;
 import io.tomahawkd.blockchain.application.server.SearchServer;
 import io.tomahawkd.blockchain.application.ui.LoginPanel;
 import io.tomahawkd.blockchain.application.user.ConnectionManager;
+import io.tomahawkd.blockchain.application.user.OrgConfigurationConstants;
 import io.tomahawkd.blockchain.application.utils.ThreadManager;
 
 public class MainApplication {
@@ -19,6 +20,9 @@ public class MainApplication {
     }
 
     public static void main(String[] args) {
+        if (args.length != 0) {
+            if (!OrgConfigurationConstants.INSTANCE.setRootPath(args[0])) return;
+        }
         LoginPanel dialog = new LoginPanel();
         dialog.pack();
         dialog.setVisible(true);
