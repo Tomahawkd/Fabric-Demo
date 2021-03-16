@@ -18,7 +18,7 @@ Here is the network configs and ports:
 CHANNEL NAME: track  
 Configtx config: ApplicationGenesis
 
-Orderer: orderer.com  
+Orderer: orderer.platform.com  
 ca-orderer: 6054  
 orderer.platform.com: 6050  
 ADMIN: 6053  
