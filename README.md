@@ -44,3 +44,6 @@ peer0.supplier.com: 9051
 CHAINCODE: 9052  
 GOSSIP: 9051  
 MSPID=SupplierMSP
+
+## Academic Disclaimer
+This project is originally developed for 7CCSMDLC Distributed Ledgers & Cryptocurrencies Course work Group 18 in 2021. All group members are informed that the code would upload to Github. This repo is fully controlled by one of the group member and there is no plagiarism since this is the exact one that we developed.
